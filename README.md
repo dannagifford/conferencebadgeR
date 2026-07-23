@@ -121,7 +121,7 @@ The script will create:
 name_badges.pdf
 ```
 
-If there are more than 12 attendees, additional pages are created automatically.
+If there are more than 10 attendees, additional pages are created automatically.
 
 ## Name formatting
 
@@ -181,7 +181,7 @@ After printing:
 
 The script can draw thin cutting guides around each badge to make alignment easier.
 
-Because the badge grid is inset from the page edge, the layout is also less dependent on whether the printer supports borderless printing.
+Cut with a paper guillotine or print on pre-perforated paper (check the dimensions line up with your paper before printing!)
 
 ## Customisation
 
