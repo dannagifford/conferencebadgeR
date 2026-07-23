@@ -34,10 +34,7 @@ This means the badges can be separated with one vertical cut and five horizontal
 The script requires R and the following packages:
 
 ```r
-install.packages(c(
-  "readr",
-  "png"
-))
+install.packages(c("readr","png"))
 ```
 
 The `grid` package is included with R.
@@ -68,7 +65,7 @@ Names and institutions can contain Unicode characters.
 The script expects an image called:
 
 ```text
-assets/badge_logo.png
+badge_logo.png
 ```
 
 By default, the image is stretched across the width of each badge.
@@ -90,12 +87,13 @@ For example, an image of `2100 × 990 px` has the correct proportions.
 ## Repository structure
 
 ```text
-conferencebadgeR/
+ConferenceBadgeR/
 ├── README.md
-├── make_badges.R
+├── conferencebadgeR.R
 ├── name_badges.csv
+├── badge_logo.png
 └── assets/
-    └── badge_logo.png
+    └── conferencebadgeR.png
 ```
 
 ## Running the script
@@ -103,8 +101,10 @@ conferencebadgeR/
 From the repository directory, run:
 
 ```bash
-Rscript make_badges.R
+Rscript conferencebadgeR.R
 ```
+
+Or press `[Source]` in RStudio after setting the correct working directory.
 
 The script will create:
 
