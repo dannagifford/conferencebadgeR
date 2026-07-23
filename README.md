@@ -46,10 +46,7 @@ This provides a sacrificial outer edge that can be trimmed away before cutting t
 The script requires R and the following packages:
 
 ```r
-install.packages(c(
-  "readr",
-  "png"
-))
+install.packages(c("readr", "png"))
 ```
 
 The `grid` package is included with R.
@@ -198,8 +195,14 @@ Linh Nguyễn
 İrem Yılmaz
 Łukasz Żółć
 ```
+Your core R installation must have been compiled with Cairo support. You can check if your system is ready by running `capabilities("cairo")`. If it returns `TRUE`, you are good to go. If it returns `FALSE`, you must install the Cairo graphics engine onto your operating system:
+- Linux (e.g. Ubuntu/Debian): Run `sudo apt-get install libcairo2-dev` in your terminal.
+- MacOS: You need to install [XQuartz](https://www.xquartz.org/), as macOS requires it to route Cairo vector graphics properly.
+- Windows: System-level Cairo libraries are bundled with the R installation.
 
-A suitable Unicode font must be available on the system.
+A suitable Unicode font must also be available on the system.
+
+If you cannot use Cairo, you can change `cairo_pdf()` to `pdf()` in the script, but accented and non-ASCII characters may not render correctly.
 
 ## Printing and cutting
 
