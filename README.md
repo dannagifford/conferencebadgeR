@@ -6,7 +6,7 @@
 
 `conferencebadgeR` is a simple R script for generating printable conference name badges from a CSV file.
 
-It creates **10 badges per A4 page** in a 2 × 5 layout. Each badge is **90 × 54 mm**, with no gaps between badges and a removable outer edge around the sheet for trimming with a paper guillotine or slicer.
+By default, it creates **10 badges per A4 page** in a 2 × 5 layout. Each badge is **90 × 54 mm**, with no gaps between badges and a removable outer edge around the sheet for trimming with a paper guillotine or slicer.
 
 Each badge can contain:
 
