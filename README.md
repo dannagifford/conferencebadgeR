@@ -1,7 +1,7 @@
 # conferencebadgeR
 
 <p align="center">
-  <img src="assets/badge_logo.png" width="600">
+  <img src="assets/conferencebadgeR.png" width="600">
 </p>
 
 `conferencebadgeR` is a simple R script for generating printable conference name badges from a CSV file.
