@@ -206,7 +206,3 @@ An example attendee CSV and badge image are included in this repository so that 
 Conference badge templates are often tied to proprietary software, commercial label formats, or awkward mail-merge workflows.
 
 This script provides a small reproducible alternative: a CSV goes in, and a correctly sized PDF comes out.
-
-## Licence
-
-MIT
