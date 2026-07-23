@@ -6,7 +6,7 @@
 
 `conferencebadgeR` is a simple R script for generating printable conference name badges from a CSV file.
 
-It creates 12 badges per A4 page in a 2 × 6 layout, with no gaps between badges, so they can be cut efficiently using a paper guillotine or slicer.
+It creates **10 badges per A4 page** in a 2 × 5 layout. Each badge is **90 × 54 mm**, with no gaps between badges and a removable outer edge around the sheet for trimming with a paper guillotine or slicer.
 
 Each badge can contain:
 
@@ -18,23 +18,30 @@ The output is a print-ready PDF.
 
 ## Badge layout
 
-The script uses the full dimensions of an A4 page:
+The script uses an A4 portrait page:
 
 - page size: 210 × 297 mm
 - 2 columns
-- 6 rows
-- badge size: 105 × 49.5 mm
-- 12 badges per page
+- 5 rows
+- badge size: 90 × 54 mm
+- 10 badges per page
 - no spacing between badges
+- 15 mm trimming margin on the left and right
+- 13.5 mm trimming margin at the top and bottom
 
-This means the badges can be separated with one vertical cut and five horizontal cuts.
+The 2 × 5 badge grid occupies 180 × 270 mm and is centred on the A4 page.
+
+This provides a sacrificial outer edge that can be trimmed away before cutting the individual badges.
 
 ## Requirements
 
 The script requires R and the following packages:
 
 ```r
-install.packages(c("readr","png"))
+install.packages(c(
+  "readr",
+  "png"
+))
 ```
 
 The `grid` package is included with R.
@@ -70,19 +77,21 @@ badge_logo.png
 
 By default, the image is stretched across the width of each badge.
 
-For a background image that exactly matches the badge dimensions, use an aspect ratio of:
+The background image is drawn across the width of each badge.
+
+For an image that exactly matches the badge dimensions, use an aspect ratio of:
 
 ```text
-105 : 49.5
+90 : 54
 ```
 
 or equivalently:
 
 ```text
-70 : 33
+5 : 3
 ```
 
-For example, an image of `2100 × 990 px` has the correct proportions.
+For example, an image of `1500 × 900 px` has the correct proportions.
 
 ## Repository structure
 
@@ -145,7 +154,7 @@ Linh Nguyễn
 
 A suitable Unicode font must be available on the system.
 
-## Printing
+## Printing and cutting
 
 Print the PDF using:
 
@@ -163,21 +172,47 @@ Scale to fit
 
 These will change the physical dimensions of the badges.
 
-Some printers cannot print to the very edge of A4 paper. This does not change the positions of the internal cuts, but parts of a full-bleed background close to the outer edge may not print.
+After printing:
+
+1. trim 15 mm from the left and right edges
+2. trim 13.5 mm from the top and bottom edges
+3. cut the remaining sheet into two 90 mm columns
+4. cut each column into five 54 mm badges
+
+The script can draw thin cutting guides around each badge to make alignment easier.
+
+Because the badge grid is inset from the page edge, the layout is also less dependent on whether the printer supports borderless printing.
 
 ## Customisation
 
-The main badge dimensions and text positions are defined near the top of the script:
+The main badge dimensions and layout are defined near the top of the script:
 
 ```r
 page_width <- 210
 page_height <- 297
 
-badge_width <- 105
-badge_height <- 49.5
+badge_width <- 90
+badge_height <- 54
 
 badges_per_row <- 2
-badges_per_col <- 6
+badges_per_col <- 5
+```
+
+The outer trimming margins are calculated automatically:
+
+```r
+grid_width <- badge_width * badges_per_row
+grid_height <- badge_height * badges_per_col
+
+margin_x <- (page_width - grid_width) / 2
+margin_y <- (page_height - grid_height) / 2
+```
+
+With the default dimensions, this gives:
+
+```text
+margin_x = 15 mm
+margin_y = 13.5 mm
 ```
 
 Text size and position can be changed in the `grid.text()` calls.
@@ -193,7 +228,7 @@ controls the name size.
 The logo/background dimensions are controlled by:
 
 ```r
-logo_width_mm <- 105
+logo_width_mm <- badge_width
 logo_height_mm <- logo_width_mm * dim(logo)[1] / dim(logo)[2]
 ```
 
